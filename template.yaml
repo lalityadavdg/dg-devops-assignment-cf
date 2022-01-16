@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  MyLambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Policies:
+        - PolicyName: LambdaExecutionPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                Resource: arn:aws:logs:ap-south-1:581628375768:*
+              - Effect: Allow
+                Action:
+                 - logs:CreateLogStream
+                 - logs:PutEvents
+                Resource: arn:aws:logs:ap-south-1:581628375768:log-group:/aws/lambda/devops-sum-function:*
+  MyLambdafunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: my-devops-sum-function
+      Handler: test_problem.lambda_handler
+      #CodeUri: s3://aws-sam-cli-managed-default-samclisourcebucket-1sxb9gpgsg5pf/mydevops/sum_d.zip
+      CodeUri: python_code/
+      Description: Lambda function to perform +,-,* ops. on two +ve numbers.
+      Role: !GetAtt MyLambdaExecutionRole.Arn
+      Runtime: python3.6
+
