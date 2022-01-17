@@ -4,11 +4,11 @@ import test_problem
 class TestUnitCode(unittest.TestCase):
     def test_check(self):
         result = test_problem.checknumber(5)
-        self.assertEqual(result,True)
+        self.assertTrue(result)
 
     def test_check_operator(self):
         result = test_problem.checkoperator("+")
-        self.assertEqual(result,True)
+        self.assertTrue(result)
 
     def test_solver(self):
         result = test_problem.solver("5-6")
