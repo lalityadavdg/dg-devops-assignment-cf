@@ -36,6 +36,7 @@ def solver(words):
 #         print("Provide the expression in right way.")
 def lambda_handler(event,context):
     print(event)
+    print("hii how are you lambda")
     input_exp = event['exp']
     stripped = input_exp.replace(" ","")
     for i in stripped:
