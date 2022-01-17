@@ -7,7 +7,6 @@ ops = { "+": operator.add,
 def checknumber(a):
     try:
         a = int(a)
-        assert type(a) == int
         return type(a) == int
     except:
         return False
@@ -15,7 +14,6 @@ def checknumber(a):
 
 def checkoperator(b):
     operators = ['+','-','*']
-    assert b in operators
     return b in operators
 
 
@@ -36,7 +34,6 @@ def solver(words):
 #         print("Provide the expression in right way.")
 def lambda_handler(event,context):
     print(event)
-    print("hii how are you lambda")
     input_exp = event['exp']
     stripped = input_exp.replace(" ","")
     for i in stripped:
