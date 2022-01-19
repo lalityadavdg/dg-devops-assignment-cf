@@ -25,7 +25,7 @@ def solver(words):
         return None
 
 def lambda_handler(event,context):
-    print("successful")
+    print("successful running")
     print(event)
     input_exp = event['exp']
     stripped = input_exp.replace(" ","")
